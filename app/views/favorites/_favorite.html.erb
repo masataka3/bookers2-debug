@@ -1,0 +1,13 @@
+	<td>
+	<% if current_user.already_favorited?(book)%>
+	  <%= link_to book_favorites_path(book), method: :delete, remote: true %>
+		<i class="fas fa-heart"></i>
+	  <% end %>
+	<%else%>
+	  <%= link_to book_favorites_path(book), method: :post, remote: true %>
+		<i class="fas fa-heart"></i>
+	  <% end %>
+	<% end %>
+	  <%=book.favorites.count %>
+	</td>
+	<td><%= link_to "#{book.book_comments.count} 件コメント",book_path(book.id) %></td>

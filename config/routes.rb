@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   end
   root 'home#top'
   get 'home/about'
+  get 'books/fav/:id' =>'books#fav', as:"fav_books"
 end

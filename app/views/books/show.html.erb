@@ -50,26 +50,25 @@
     					 <ul>error
        					 <% @book_comment.errors.full_messages.each do |message| %>
 				          <li><%= message %></li>
-				        <% end %>
+			        <% end %>
 				    </ul>
 				  </div>
 				<% end %>
-			 <div><%= form_for [@book,@book_comment] do |f|%>
+
+			 <div><%= form_with(model: [@book,@book_comment], remote: true) do |f|%>
 					<%= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
 					<%= f.submit "送信する", class: "btn-sm btn-success" %>
              	  <% end %>
              	</div>
+             	<div>
+ 
+             </div>
 
 			  <tr>
 			  	<h3>コメント表示</h3>
-				<% @book.book_comments.each do |book_comment| %>
-					    <p><span>コメント内容</span><%= book_comment.comment%></p>
-					    <p><span>ユーザー</span><%= book_comment.user.name %></p>
-					    <% if book_comment.user_id == current_user.id %>
-					    <p><%= link_to "Destroy", book_book_comments_path(book_comment), method: :delete, "data-confirm"=> "本当に削除してもよろしいですか？", class: "btn-sm btn-danger"%></p>
-					    <% end%>
-
-					  <% end %>
+			  	<div class = "comments_area">
+				<%= render 'book_comments/comments_area',  book: @book, comments: @book_comments%>
+				</div>
 			  </tr>
 
 	</div>

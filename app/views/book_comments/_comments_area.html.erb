@@ -1,0 +1,11 @@
+        <% comments.each do |book_comment| %>
+
+              <p><span>コメント内容</span><%= book_comment.comment%></p>
+              <p><span>ユーザー</span><%= book_comment.user.name %></p>
+              <% if book_comment.user_id == current_user.id %>
+
+              <p><%= link_to "Destroy", book_book_comments_path(book, comment_id: book_comment.id), method: :delete, "data-confirm"=> "本当に削除してもよろしいですか？", class: "btn-sm btn-danger", remote: true%></p>
+              <% end%>
+
+            <% end %>
+        

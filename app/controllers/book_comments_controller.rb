@@ -4,21 +4,25 @@ class BookCommentsController < ApplicationController
 		@book_comment = current_user.book_comments.new(book_comment_params)
 		@book_comment.book_id = @book.id
 		@user = User.find_by(id: @book.user_id)
-		if @book_comment.save
-	    redirect_back(fallback_location: root_path)
-	else
-		render template: "books/show"
+		@book_comment.save
 	end
-end
 
 	def destroy
-		   # WARNING: book_id となっているがbook_commentのid
-    	   comment = BookComment.find(params[:book_id])
-    	   comment.destroy
+		
 
+		   # WARNING: book_id となっているがbook_commentのid
+    	   comment = BookComment.find(params[:comment_id].to_i)
+
+    	   @book = comment.book
+    	   if comment.destroy
+    	   end
     	   # redirect_to "/books/#{comment.book.id}}"
-    	   redirect_to book_path(comment.book.id)
+    	   # redirect_to book_path(comment.book.id)
     	   # redirect_to book_path(@book.user_id)
+    end
+    def set_comment
+    	@comment = Comment.find_by(id: params[:id])
+
     end
 
 private

@@ -51,12 +51,12 @@
 					<td><%= book.body %></td>
 					<td>
 						<% if current_user.already_favorited?(book)%>
-						  <%= link_to book_favorites_path(book), method: :delete do %>
-							<i class="fas fa-heart"></i>
+						  <%= link_to book_favorites_path(book), method: :delete, remote: true do %>
+							<i class="fas fa-heart" id="<%= book.id %>"></i>
 						  <% end %>
 						<%else%>
-						  <%= link_to book_favorites_path(book), method: :post do %>
-							<i class="fas fa-heart"></i>
+						  <%= link_to book_favorites_path(book), method: :post,remote: true do%>
+							<i class="fas fa-heart" id="<%= book.id %>"></i>
 						  <% end %>
 						<% end %>
 						  <%=book.favorites.count %>

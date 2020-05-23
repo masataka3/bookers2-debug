@@ -1,0 +1,1 @@
+$('#fas fa-heart_<%= @book.id %>').html("<%= j(render: 'users/like', locals: {book: @book}) %>");
